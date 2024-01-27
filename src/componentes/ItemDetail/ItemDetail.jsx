@@ -1,18 +1,17 @@
-import React from 'react';
-import './Item.css';
-import { Link } from 'react-router-dom';
 
-const Item = ({id, nombre, precio, img}) => {
+import React from 'react';
+import "./ItemDetail.css";  // Importa el archivo CSS
+
+const ItemDetail = ({ id, nombre, precio, img }) => {
   return (
-    <div className='cardProducto'>
-        <img src={img} alt={nombre} />
-        <h3>Nombre: {nombre} </h3>
-        <p>ID: {id} </p>
-        <p>Precio: {precio} </p>
-        <Link to={`/item/${id}`}> Ver Detalles </Link>
-        {/* <button> Ver Detalles </button> */}
+    <div className="item-detail-container">
+      <h2 className="name">Nombre: {nombre} </h2>
+      <h3 className="price">Precio: {precio} </h3>
+      <p className="id">ID: {id} </p>
+      <p></p>
+      <img src={img} alt={nombre} className="item-image" />
     </div>
-  )
+  );
 }
 
-export default Item
+export default ItemDetail;

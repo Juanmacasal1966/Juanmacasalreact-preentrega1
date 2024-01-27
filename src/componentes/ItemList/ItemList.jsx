@@ -1,4 +1,5 @@
 import Item from "../Item/Item"
+import "./ItemList.css"
 
 const ItemList = ({productos}) => {
   return (
@@ -8,4 +9,4 @@ const ItemList = ({productos}) => {
   )
 }
 
-export default ItemList
+export default ItemList 

@@ -1,35 +1,36 @@
-import { useState } from 'react';
+import { useState } from "react";
+import "./ItemCount.css";
 
-const ItemCount = ({ initial, stock, onAdd }) => {
-  const [quantity, setQuantity] = useState(initial);
 
-  const increment = () => {
-    if (quantity < stock) {
-      setQuantity(quantity + 1);
+
+const ItemCount = ({inicial, stock, funcionAgregar }) => {
+
+    const [contador, setContador] = useState(1);
+
+
+    const incrementar = () => {
+      if(contador < stock) {
+        setContador(contador + 1);
+      }
     }
-  };
 
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    const decrementar = () => {
+      if(contador > inicial) {
+        setContador(contador - 1);
+      }
     }
-  };
+
 
   return (
-    <div className='Counter'>
-      <div className='Controls'>
-        <button className='Button' onClick={decrement}>-</button>
-        <h4 className='Number'>{quantity}</h4>
-        <button className='Button' onClick={increment}>+</button>
-      </div>
-      <div>
-        <button className='Button' onClick={() => onAdd(quantity)} disabled={!stock}>
-          {/* Agrega algún texto o contenido dentro del botón */}
-          Añadir al carrito
-        </button>
-      </div>
+    <>
+    <div>
+        <button className="decrementButton" onClick={decrementar}> - </button>
+        <p> {contador} </p>
+        <button className="incrementButton" onClick={incrementar}> + </button>
     </div>
-  );
-};
+      <button className="addToCart" onClick={() => funcionAgregar(contador)}> Agregar al Carrito </button>
+    </>
+  )
+}
 
-export default ItemCount;
+export default ItemCount
