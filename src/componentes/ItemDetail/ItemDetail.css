@@ -1,30 +1,28 @@
-/* ItemDetail.css */
 
-/* Estilos para el contenedor principal del componente */
 .item-detail-container {
-    border: 1px solid #ccc;
+    border: 1px solid rgb(16, 6, 17);
     padding: 20px;
     margin: 20px;
     text-align: center;
   }
   
-  /* Estilos para el encabezado del nombre */
+ 
   .name {
     color: #333;
   }
   
-  /* Estilos para el precio */
+  
   .price {
     color: #840096;
   }
   
-  /* Estilos para el párrafo del ID */
+  
   .id {
     font-style: italic;
     color: #777;
   }
   
-  /* Estilos para la imagen */
+  
   .item-image {
     max-width: 50%;
     height: auto;

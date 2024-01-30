@@ -1,6 +1,6 @@
 
 import React from 'react';
-import "./ItemDetail.css";  // Importa el archivo CSS
+import './ItemDetail.css';
 
 const ItemDetail = ({ id, nombre, precio, img }) => {
   return (
