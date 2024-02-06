@@ -5,12 +5,16 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
   const [producto, setProducto] = useState(null);
-  const { itemId } = useParams(); 
+  const { id } = useParams(); 
 
   useEffect(() => {
-    getUnProducto(itemId)
+    const idNumber = parseInt(id); 
+    getUnProducto(idNumber) 
       .then(res => setProducto(res))
-  }, [itemId]); 
+      .catch(error => {
+        
+      });
+  }, [id]);
 
   return (
     <div>
@@ -24,3 +28,5 @@ const ItemDetailContainer = () => {
 }
 
 export default ItemDetailContainer;
+
+
