@@ -7,7 +7,7 @@ const ItemListContainer = ({ greeting }) => {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { id } = useParams(); // Obtener la categoría de la URL
+  const { id } = useParams(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,7 +24,6 @@ const ItemListContainer = ({ greeting }) => {
     fetchData();
   }, []);
 
-  // Filtrar productos por categoría
   const productosFiltrados = id ? productos.filter(producto => producto.categoria === id) : productos;
 
   return (
