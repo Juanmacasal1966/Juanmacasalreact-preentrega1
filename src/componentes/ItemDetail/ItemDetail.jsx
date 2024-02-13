@@ -1,29 +1,39 @@
-
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import ItemCount from '../ItemCount/ItemCount';
+import { Link } from 'react-router-dom';
 import './ItemDetail.css';
+import { CarritoContext } from '../../context/CarritoContext';
+import { useContext } from 'react';
 
-const ItemDetail = () => {
-  
-  const { id } = useParams();
+const ItemDetail = ({ id, nombre, stock, precio, img, descripcion }) => {
+  const [cantidadSeleccionada, setCantidadSeleccionada] = useState(0);
+  const { agregarAlCarrito } = useContext(CarritoContext);
 
-  const itemDetails = {
-    id: id,
-    nombre: 'Nombre del ítem',
-    precio: 'Precio del ítem',
-    img: 'URL de la imagen del ítem',
+  const handleAgregarAlCarrito = (cantidad) => {
+    setCantidadSeleccionada(cantidad);
+    const item = { id, nombre, precio, descripcion }; 
+    agregarAlCarrito(item, cantidad);
   };
 
   return (
-    <div className="item-detail-container">
-      <h2 className="name">Nombre: {itemDetails.nombre} </h2>
-      <h3 className="price">Precio: {itemDetails.precio} </h3>
-      <p className="id">ID: {itemDetails.id} </p>
-      <p></p>
-      <img src={itemDetails.img} alt={itemDetails.nombre} className="item-image" />
+    <div className='contenedorItem'>
+      <h2>Nombre: {nombre}</h2>
+      <h3>Precio: {precio}</h3>
+      <p>ID: {id}</p>
+      <p>Stock: {stock}</p>
+      <p>{descripcion}</p>
+      <img src={img} alt={nombre} />
+
+      {cantidadSeleccionada > 0 ? (
+        <Link to="/cart">Terminar compra</Link>
+      ) : (
+        <ItemCount initial={1} stock={stock} onAdd={handleAgregarAlCarrito} />
+      )}
     </div>
   );
-}
+};
 
 export default ItemDetail;
+
+
 

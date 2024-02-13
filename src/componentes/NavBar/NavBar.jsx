@@ -12,6 +12,7 @@ const Navbar = () => {
           <li className="nav-item"><Link to="/category/nike">Nike</Link></li>
           <li className="nav-item"><Link to="/category/addidas">Addidas</Link></li>
           <li className="nav-item"><Link to="/category/puma">Puma</Link></li>
+          <li className="nav-item"><Link to="/">Inicio</Link></li>
         </ul>
         <CartWidget />
       </nav>
@@ -20,4 +21,6 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+
 
