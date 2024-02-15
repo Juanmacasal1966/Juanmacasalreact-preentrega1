@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "../ItemList/ItemList";
-import { getProductos } from "../../asyncmock";
 import { useParams } from 'react-router-dom';
+import { db } from "../../Services/Config";
+import { collection, getDocs, where, query } from "firebase/firestore";
 
-const ItemListContainer = ({ greeting }) => {
+function ItemListContainer({ greeting }) {
   const [productos, setProductos] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { id } = useParams(); 
+  const { id } = useParams();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const respuesta = await getProductos();
-        setProductos(respuesta);
+        const productosCollection = collection(db, 'productos');
+        const q = id ? query(productosCollection, where('categoria', '==', id)) : productosCollection;
+        const querySnapshot = await getDocs(q);
+        const data = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+        setProductos(data);
       } catch (error) {
         setError("Hubo un error al cargar los productos");
       } finally {
@@ -22,9 +26,7 @@ const ItemListContainer = ({ greeting }) => {
     };
 
     fetchData();
-  }, []);
-
-  const productosFiltrados = id ? productos.filter(producto => producto.categoria === id) : productos;
+  }, [id]);
 
   return (
     <div>
@@ -34,11 +36,10 @@ const ItemListContainer = ({ greeting }) => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <ItemList productos={productosFiltrados} />
+        <ItemList productos={productos} />
       )}
     </div>
   );
-};
+}
 
 export default ItemListContainer;
-
