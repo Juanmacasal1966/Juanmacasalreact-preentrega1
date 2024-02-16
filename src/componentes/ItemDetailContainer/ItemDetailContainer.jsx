@@ -32,7 +32,6 @@ const ItemDetailContainer = () => {
     }
 
     return () => {
-      // Limpiar estado si es necesario
     };
   }, [id]);
 
